@@ -16,7 +16,7 @@ version = environ.get("CIRCLE_BUILD_NUM", None)
 if version is None:
     git_out = subprocess.run(["git", "rev-parse", "--short", "HEAD"], stdout=subprocess.PIPE)
     revision = git_out.stdout
-    version = f"0.0.dev0"
+    version = f"0.0.dev" + revision.decode("utf-8").rstrip()
 else:
     version = "0." + version + ".0"
 
