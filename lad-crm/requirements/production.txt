@@ -1,1 +1,5 @@
 -e ../lad-common
+
+Flask==1.1.2
+python-dotenv==0.12.0
+uWSGI==2.0.18
