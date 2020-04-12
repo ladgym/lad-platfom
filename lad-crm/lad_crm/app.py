@@ -1,5 +1,6 @@
 from flask import Flask
-from .views import init_blueprints
+from lad_crm.views import init_blueprints
+from lad_crm.settings.config import init_config
 
 
 def init_app():
@@ -8,6 +9,9 @@ def init_app():
     :return Flask: initialized application
     """
     app = Flask(__name__)
+
+    # initialize app configuration
+    init_config(app)
 
     # register blueprints
     init_blueprints(app)

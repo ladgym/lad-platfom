@@ -1,4 +1,4 @@
-from .home import home as bp_home
+from lad_crm.views.public import public_bp
 
 
 def init_blueprints(app):
@@ -8,6 +8,6 @@ def init_blueprints(app):
     :return Flask: application with registered blueprints
     """
 
-    app.register_blueprint(bp_home)
+    app.register_blueprint(public_bp)
 
     return app
