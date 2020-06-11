@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% import 'forms.html' as form %}
+
+{% block pagecontent %}
+
+	
+
+    <div class='zones'  style="width: 65%">
+		<div style="text-align: center">
+			<div id="loginform"  >
+				{{ form.find_by_name_form(find_subscriptions_by_name_form, name_choices) }} 
+				{{ form.find_by_barcode_form(find_subscriptions_by_barcode_form) }}
+				{{ form.form_as_table(perform_action_form_table_title, perform_action_form) }}
+			</div>
+		</div>
+		<div style="text-align: center">
+			<div id="loginform"  >
+				{{ form.render_subscription_search_result(subscriptions_to_display) }}
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class='zones' style="width: 25%">
+		{{ form.render_subscription_search_result(subscription_log_to_display) }} 
+	</div>
+	
+	<div class="clearfix"></div>
+	
+	<div class='zones' style="width: 30%">
+		<h1>ФИО Тип занятия</h1>
+	</div>
+	
+	<div class='zones' style="width: 20%">
+		<h1>Что сегодня</h1>
+	</div>
+	
+	<div class='zones' style="width: 15%">
+		<h1>Аренда и продажа</h1>
+	</div>
+	
+	<div class='zones' style="width: 20%"> 
+		<h1>Время Действие</h1>
+	</div>
+	
+	<div class="clearfix"></div>
+	
+	<div class='zones' style="width: 100%"> 
+		<h1>№ ФИО Тип Занятий осталось Продан Действует до Заморозки Комментарий</h1>
+	</div>
+    
+{% endblock %}

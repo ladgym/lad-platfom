@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% import 'forms.html' as form %}
+
+{% block pagecontent %}
+
+{% include 'managedb/links.html' %}
+
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(client_creation_form_table_title, client_creation_form) }}
+		</div>
+	</div>
+   	<div style="text-align: center">
+		<div id="loginform"  >			
+			Посетители в базе
+				<table class="basic" >
+					<tr>
+						<th>Имя</th>
+						<th>Фамилия</th>
+						<th>Отчество</th>
+						<th>ФИО</th>
+						<th>День рождения</th>
+						<th>Почта</th>
+						<th>Телефон</th>
+						<th>Дополнительная информация</th>
+						<th>Оповещать по почте?</th>
+						<th>Оповещать по телефону?</th>
+						<th>Создано</th>
+						<th>Обновлено</th>
+						<th>Штрих-код</th>
+						<th>Текущий комментарий</th>
+						<th>Связан с</th>
+						<th>Редактировать</th>
+						<th>Удалить</th>
+					</tr>
+					{% for client in clients %}
+						{% include 'managedb/_clients.html' %}
+					{% endfor %}			
+				</table>
+			</form>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+<tr>
+	<th>{{ client.first_name }}</th>
+	<th>{{ client.last_name }}</th>
+	<th>{{ client.middle_name }}</th>
+	<th>{{ client.full_name }}</th>
+	<th>{{ client.birthday }}</th>
+	<th>{{ client.email }}</th>
+	<th>{{ client.phone }}</th>
+	<th>{{ client.additional_info }}</th>
+	<th>{{ client.allow_email_notifications }}</th>
+	<th>{{ client.allow_phone_notifications }}</th>
+	<th>{{ client.created }}</th>
+	<th>{{ client.updated }}</th>
+	<th>{{ client.barcode }}</th>
+	<th>{{ client.comment }}</th>
+	<th>{{ client.in_relations_with }}</th>
+	<th><a href="clients/edit/{{ client.client_id }}">Редактировать</a></th>
+	<th><a href="clients/delete/{{ client.client_id }}">Удалить</a></th>
+</tr>

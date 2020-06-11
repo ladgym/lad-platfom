@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% import 'forms.html' as form %}
+
+{% block pagecontent %}
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(subscription_type_creation_form_table_title, subscription_type_creation_form) }}
+		</div>
+	</div>
+   	<div style="text-align: center">
+		<div id="loginform"  >			
+			Типы абонементов
+				<table class="basic" >
+					<tr>
+						<th>Название</th>
+						<th>Цена</th>
+						<th>Количество посещений</th>
+						<th>Действует (месяцев)</th>
+						<th>Заморозка (недель)</th>
+						<th>Добавлен</th>
+						<th>Обновлён</th>
+						<th>В архиве?</th>
+					</tr>
+					{% for type in subscription_types %}
+						{% include 'managedb/_subscription_types.html' %}
+					{% endfor %}			
+				</table>
+			</form>
+		</div>
+	</div>
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(discount_creation_form_table_title, discount_creation_form) }}
+		</div>
+	</div>
+   	<div style="text-align: center">
+		<div id="loginform"  >			
+			Типы скидок
+				<table class="basic">
+					<tr>
+						<th>Название</th>
+						<th>Описание</th>
+						<th>Размер (в процентах)</th>
+						<th>В архиве?</th>
+					</tr>
+					{% for type in discount_types %}
+						{% include 'managedb/_discount_types.html' %}
+					{% endfor %}	
+				</table>
+			</form>
+		</div>
+	</div>
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(subscription_action_creation_form_table_title, subscription_action_creation_form) }}
+		</div>
+	</div>
+   	<div style="text-align: center">
+		<div id="loginform"  >			
+			Типы действий над абонементами
+				<table class="basic">
+					<tr>
+						<th>Название</th>
+						<th>Шаблон в формате JSON</th>
+					</tr>
+					{% for type in subscription_action_types %}
+						{% include 'managedb/_subscription_action_types.html' %}
+					{% endfor %}	
+				</table>
+			</form>
+		</div>
+	</div>
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(client_creation_form_table_title, client_creation_form) }}
+		</div>
+	</div>
+   	<div style="text-align: center">
+		<div id="loginform"  >			
+			Посетители в базе
+				<table class="basic" >
+					<tr>
+						<th>Имя</th>
+						<th>Фамилия</th>
+						<th>Отчество</th>
+						<th>ФИО</th>
+						<th>День рождения</th>
+						<th>Почта</th>
+						<th>Телефон</th>
+						<th>Дополнительная информация</th>
+						<th>Оповещать по почте?</th>
+						<th>Оповещать по телефону?</th>
+						<th>Создано</th>
+						<th>Обновлено</th>
+						<th>Штрих-код</th>
+						<th>Текущий комментарий</th>
+						<th>Связан с</th>
+					</tr>
+					{% for client in clients %}
+						{% include 'managedb/_clients.html' %}
+					{% endfor %}			
+				</table>
+			</form>
+		</div>
+	</div>
+	
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(subscription_creation_form_table_title, subscription_creation_form) }}
+		</div>
+	</div>
+
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(perform_action_form_table_title, perform_action_form) }}
+		</div>
+	</div>
+
+   	<div style="text-align: center">
+		<div id="loginform"  >			
+			Абонементы в базе
+				<table class="basic" >
+					<tr>
+						<th>Номер</th>
+						<th>ФИО</th>
+						<th>Штрих-код</th>
+						<th>Тип абонемента</th>
+						<th>Скидка</th>
+						<th>Цена</th>
+						<th>Долг</th>
+						<th>Количество посещений</th>
+						<th>Создано</th>
+						<th>Действует до</th>
+						<th>Заморожен?</th>
+						<th>Использована заморозка без уважительной причины?</th>
+						<th>Причина текущей заморозки</th>
+						<th>Комментарий</th>
+					</tr>
+					
+					{% for row in subscription_rows %}
+					<tr>
+						{% for column in row %}
+							<th>{{ column }}</th>
+						{% endfor %}
+					</tr>
+					{% endfor %}	
+					
+				</table>
+			</form>
+		</div>
+	</div>
+
+
+{% endblock %}

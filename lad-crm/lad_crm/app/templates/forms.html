@@ -1,0 +1,90 @@
+{% macro form_as_table(title, form, table_class='basic', tr_class='basic', th_class='basic') %}
+	<form action="" method="post" novalidate>
+	<table class="{{ table_class }}"><h1>{{ title }}</h1>
+		<tr class="{{ tr_class }}">
+			{% for field in form %}
+				<th class="{{ th_class }}">{{ field.label }}<th>
+			{% endfor %}</tr>
+		<tr class="{{ tr_class }}">
+			{% for field in form %}
+				<th class="{{ th_class }}">{{ field }}<th>
+			{% endfor %}</tr>
+		<tr class="{{ tr_class }}">
+			{% for field in form %}
+				<th class="{{ th_class }}">
+					{% for error in field.errors %}
+						<span class="error">[{{ error }}]</span>
+					{% endfor %}<th>
+			{% endfor %}</tr>
+	</table>
+	</form>
+{% endmacro %}
+
+{% macro find_by_name_form(form, name_choices) %}
+	<form action="" method="post" novalidate>
+		{{ form.hidden_tag() }}
+		{{ form.full_name.label }}  {{ form.full_name(list="names") }}  {{ form.start_search_by_name }}
+		{% for error in form.full_name.errors %}
+			<div class="error">[{{ error }}]</div>
+		{% endfor %}
+		<datalist id="names">
+			{% for choice in name_choices %}
+				<option value="{{ choice }}">
+			{% endfor %}
+		</datalist>
+	</form>
+{% endmacro %}
+
+{% macro find_by_barcode_form(form) %}
+	<form action="" method="post" novalidate>
+		{{ form.hidden_tag() }}
+		{{ form.barcode.label }}  {{ form.barcode }}  {{ form.start_search_by_barcode }}
+		{% for error in form.barcode.errors %}
+			<div class="error">[{{ error }}]</div>
+		{% endfor %}
+	</form>
+{% endmacro %}
+
+{% macro render_subscription_search_result(entries, table_class='basic', tr_class='basic', th_class='basic') %}
+	<table class="{{ table_class }}">
+		<tr class="{{ tr_class }}">
+			{% for key in entries %}
+				<th class="{{ th_class }}">{{ key }}<th>
+			{% endfor %}</tr>
+		{% for key, entry in entries.items() %}
+			{% if loop.index0 == 0 %}	
+				{% for num in entry %}
+					{% set outer_loop = loop %}
+						<tr class="{{ tr_class }}">
+						{% for key in entries %}
+							<th class="{{ th_class }}">{{ entries[key][outer_loop.index0] }}<th>
+						{% endfor %}</tr>
+				{% endfor %}
+			{% endif %}	
+		{% endfor %}
+	</table>
+{% endmacro %}
+
+{% macro render_subscriptions(entries, table_class='basic', tr_class='basic', th_class='basic') %}
+	<table class="{{ table_class }}">
+		<tr class="{{ tr_class }}">
+			{% for key in entries %}
+				<th class="{{ th_class }}">{{ key }}<th>
+			{% endfor %}
+			<th class="{{ th_class }}">Редактировать<th>
+			<th class="{{ th_class }}">Удалить<th></tr>
+		{% for key, entry in entries.items() %}
+			{% if loop.index0 == 0 %}	
+				{% for num in entry %}
+					{% set outer_loop = loop %}
+						<tr class="{{ tr_class }}">
+						{% for key in entries %}
+							<th class="{{ th_class }}">{{ entries[key][outer_loop.index0] }}<th>
+						{% endfor %}
+						<th class="{{ th_class }}"><a href="subscriptions/edit/{{ entries['Номер абонемента'][outer_loop.index0] }}">Редактировать</a><th>
+						<th class="{{ th_class }}"><a href="subscriptions/delete/{{ entries['Номер абонемента'][outer_loop.index0] }}">Удалить</a><th></tr>
+				{% endfor %}
+			{% endif %}	
+		{% endfor %}
+	</table>
+{% endmacro %}

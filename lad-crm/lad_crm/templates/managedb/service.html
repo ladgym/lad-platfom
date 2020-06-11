@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% import 'forms.html' as form %}
+
+{% block pagecontent %}
+
+{% include 'managedb/links.html' %}
+
+
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(subscription_type_creation_form_table_title, subscription_type_creation_form) }}
+		</div>
+	</div>
+   	<div style="text-align: center">
+		<div id="loginform"  >			
+			Типы абонементов
+				<table class="basic" >
+					<tr>
+						<th>Название</th>
+						<th>Цена</th>
+						<th>Количество посещений</th>
+						<th>Действует (месяцев)</th>
+						<th>Заморозка (недель)</th>
+						<th>Добавлен</th>
+						<th>Обновлён</th>
+						<th>В архиве?</th>
+					</tr>
+					{% for type in subscription_types %}
+						{% include 'managedb/_subscription_types.html' %}
+					{% endfor %}			
+				</table>
+			</form>
+		</div>
+	</div>
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(discount_creation_form_table_title, discount_creation_form) }}
+		</div>
+	</div>
+   	<div style="text-align: center">
+		<div id="loginform"  >			
+			Типы скидок
+				<table class="basic">
+					<tr>
+						<th>Название</th>
+						<th>Описание</th>
+						<th>Размер (в процентах)</th>
+						<th>В архиве?</th>
+					</tr>
+					{% for type in discount_types %}
+						{% include 'managedb/_discount_types.html' %}
+					{% endfor %}	
+				</table>
+			</form>
+		</div>
+	</div>
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(subscription_action_creation_form_table_title, subscription_action_creation_form) }}
+		</div>
+	</div>
+   	<div style="text-align: center">
+		<div id="loginform"  >			
+			Типы действий над абонементами
+				<table class="basic">
+					<tr>
+						<th>Название</th>
+						<th>Шаблон в формате JSON</th>
+					</tr>
+					{% for type in subscription_action_types %}
+						{% include 'managedb/_subscription_action_types.html' %}
+					{% endfor %}	
+				</table>
+			</form>
+		</div>
+	</div>
+{% endblock %}

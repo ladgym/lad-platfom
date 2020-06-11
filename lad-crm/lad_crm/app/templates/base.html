@@ -1,0 +1,43 @@
+<html>
+    <head>
+	   <script>
+			if ( window.history.replaceState ) {
+				window.history.replaceState( null, null, window.location.href );
+			}
+		</script>
+	   <link rel="stylesheet" href={{ url_for('static', filename='css/header.css') }}> 
+      {% if title %}
+      <title>Ладъ – {{ title }}</title>
+      {% else %}
+      <title>Информационная система клуба Ладъ</title>
+      {% endif %}
+    </head>
+    <body>
+        <div id='toplinks'> <div id='lad'>Ладъ</div>
+			<a href="{{ url_for('mainpage.index') }}">Глагне</a>
+			<a href="{{ url_for('managedb.managedb') }}">Редактрировать базу</a>
+			{% if current_user.is_anonymous %}
+			<a href="{{ url_for('auth.login') }}">Войти</a>
+			{% else %}
+			<a href="{{ url_for('auth.logout') }}">Выйти</a>
+			{% endif %}
+		</div>
+		
+		<div class="clearfix"></div>
+        
+        {% block pagecontent %}{% endblock %}
+		
+		
+		<div id="status"> Status: <hr>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<ul>
+				{% for message in messages %}
+				<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			{% endwith %}
+		</div>
+    </body>
+</html>

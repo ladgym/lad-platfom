@@ -1,0 +1,15 @@
+<tr>
+	<th>{{ Client.query.get(ClientToSubscription.query.get(subscription.subscription_id).client_id).full_name }}</th>
+	<th>{{ Client.query.get(ClientToSubscription.query.get(subscription.subscription_id).client_id).barcode }}</th>
+	<th>{{ SubscriptionType.query.get(subscription.subscription_type_id).name }}</th>
+	<th>{{ Discount.query.get(subscription.discount_id).name }}</th>
+	<th>{{ subscription.price }}</th>
+	<th>{{ subscription.debt }}</th>
+	<th>{{ subscription.visit_number }}</th>
+	<th>{{ subscription.created }}</th>
+	<th>{{ subscription.active_up_to }}</th>
+	<th>{{ subscription.is_frozen }}</th>
+	<th>{{ subscription.is_non_sick_freeze_used }}</th>
+	<th>{{ subscription.freeze_reason }}</th>
+	<th>{{ subscription.comment }}</th>
+</tr>

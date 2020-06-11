@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% import 'forms.html' as form %}
+
+{% block pagecontent %}
+
+{% include 'managedb/links.html' %}
+
+	
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(subscription_creation_form_table_title, subscription_creation_form) }}
+		</div>
+	</div>
+
+	<div style="text-align: center">
+		<div id="loginform"  >
+			{{ form.form_as_table(perform_action_form_table_title, perform_action_form) }}
+		</div>
+	</div>
+
+		<div style="text-align: center">
+			<div id="loginform"  >
+				{{ form.render_subscriptions(subscriptions) }}
+			</div>
+		</div>
+
+
+{% endblock %}
